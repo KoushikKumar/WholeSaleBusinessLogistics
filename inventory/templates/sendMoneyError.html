@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <br><br><br>
+    <!--<div class="col-sm-offset-3">-->
+<p class="lead" style="text-align:center; color:#BC2222">Oops!! Supplier not present in the selected city</p>
+        <!--</div>-->
+    <div class="col-sm-2 col-sm-offset-4">
+<form method="get" action="{% url 'sendMoney' %}">
+<input class="btn btn-primary" type="submit" value="Enter Correct Details">
+</form>
+    </div>
+<form method="get" action="{% url 'addSupplier' %}">
+<input class="btn btn-primary" type="submit" value="Add New Supplier">
+</form>
+</div>
+
+ {% endblock %}
+
+

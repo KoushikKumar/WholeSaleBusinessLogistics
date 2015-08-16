@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <br><br><br>
+    <!--<div class="col-sm-offset-3">-->
+<p class="lead" style="text-align:center; color:#178417; margin-right: 50px ">New Supplier Informtion Added Sucessfully!!!</p>
+        <!--</div>-->
+    <div class="col-sm-2 col-sm-offset-4">
+<form method="get" action="{% url 'addProduct' %}">
+<input class="btn btn-primary" type="submit" value="Add New Product">
+</form>
+    </div>
+<form method="get" action="#">
+<input class="btn btn-primary" type="submit" value="Send Money">
+</form>
+</div>
+
+ {% endblock %}
+

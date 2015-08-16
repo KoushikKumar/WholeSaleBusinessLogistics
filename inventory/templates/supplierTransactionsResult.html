@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+<head>
+<style>
+    {% block css_style %}
+        table, th, td {
+    border: 1px solid #D5D4D4;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 {
+    width: 100%;
+    background-color: #FFF;
+}
+table#t02 {
+    width: 100%;
+    background-color: #FFF;
+}
+
+caption {
+  padding-top: 75px;
+  padding-bottom: 1px;
+  color: #777;
+  text-align: center;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #D5D4D4;
+}
+
+    {% endblock %}
+    </style>
+
+</head>
+
+
+<body>
+{% block tableinfo %}
+
+<br>
+<p align="center" class="lead">Transactions of {{supplierName}}, {{cityName}}</p>
+
+<hr>
+<div class="row">
+    <div class="col col-sm-11 ">
+<p class="lead" style="color:rgb(6, 9, 6)">Total balance amount to be paid = Rs.{{balanceAmount}}
+</p>
+        </div>
+<form method="get" action="{% url 'sendMoney' %}">
+<input class="btn btn-primary" type="submit" value="Pay Now">
+</form>
+</div>
+<hr>
+<p class="lead">Details Of Products Received</p>
+{% if productDetailsLabel %}
+<table class="table" style="width:100%" id="t01" align="left">
+    <tr>
+    <th>S.No</th>
+    <th>Product Name</th>
+    <th>Brand</th>
+    <th>Weight</th>
+    <th>Quantity</th>
+    <th>Buying Price</th>
+    <th>Loading Date</th>
+  </tr>
+{% for instance in receivedProductDetails %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{instance.product_name}}</td>
+        <td>{{instance.brand}}</td>
+        <td>{{instance.weight}}</td>
+        <td>{{instance.quantity}}</td>
+        <td>{{instance.buying_price}}</td>
+        <td>{{instance.loading_date}}</td>
+
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p class="lead" style="color:rgb(134, 11, 3)">{{ productDetailStatus }}</p>
+{% endif %}
+
+<p class="lead">Details Of Amount Sent</p>
+{% if moneyDetailsLabel %}
+<table class="table" style="width:100%" id="t02" align="left">
+    <tr>
+    <th>S.No</th>
+    <th>Amount Paid</th>
+    <th>Paid Date</th>
+    <th>Remarks</th>
+  </tr>
+{% for instance in amountPaidDetails %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{instance.amount_paid}}</td>
+        <td>{{instance.date}}</td>
+        <td>{{instance.remarks}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p class="lead" style="color:rgb(134, 11, 3)">{{ amountDetailStatus }}</p>
+<hr>
+{% endif %}
+{% endblock %}
+</body>
+</html>
+

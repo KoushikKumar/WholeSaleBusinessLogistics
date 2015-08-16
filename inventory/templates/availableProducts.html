@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+<head>
+<style>
+    {% block css_style %}
+        table, th, td {
+    border: 1px solid #D5D4D4;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 {
+    width: 100%;
+    background-color: #F8F8F8;
+}
+
+caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #777;
+  text-align: center;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #D5D4D4;
+}
+
+    {% endblock %}
+    </style>
+
+</head>
+
+<body>
+{% block tableinfo %}
+
+<table class="table" style="width:100%" id="t01">
+    <caption><p class="lead">Available Products </p></caption>
+    <tr>
+    <th>S.No</th>
+    <th>Product Name</th>
+    <th>Brand</th>
+    <th>Weight</th>
+    <th>Details</th>
+  </tr>
+    {% for instance in final_list %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{instance.product_name}}</td>
+        <td>{{instance.brand}}</td>
+        <td>{{instance.weight}}</td>
+        <td><a href="{{instance.get_absolute_url}}">ViewDetails</a></td>
+
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+</body>
+</html>

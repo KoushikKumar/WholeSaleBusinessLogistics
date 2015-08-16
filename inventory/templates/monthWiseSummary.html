@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+<head>
+<style>
+ {% block css_style %}
+        .text-align-center{
+              text-align: center;
+        }
+    .btn-primary{
+            margin-left: 525px;
+    }
+  input, input[placeholder]{
+        color:black;
+        text-align:center;
+
+}
+    {% endblock %}
+</style>
+</head>
+s
+<body>
+{% block tableinfo %}
+<br>
+<br>
+<p class="lead text-align-center">Enter From & To Date to View Summary Details</p>
+<br>
+   <form method="POST" >{% csrf_token %}
+       <div class="row">
+           <div class=" col-sm-2 col-sm-offset-4">
+       <input name ="FromDate" type="date" placeholder="From : YYYY-MM-DD" required>
+</div>
+
+
+           <div class=" col-sm-2 ">
+       <input name ="ToDate" type="date" placeholder="To : YYYY-MM-DD" required>
+        </div>
+            </div>
+
+       <br>
+       <input class="btn btn-primary " type="submit" value="Generate">
+
+
+   </form>
+{% endblock %}
+
+</body>
+</html>
